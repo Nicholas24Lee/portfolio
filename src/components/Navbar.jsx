@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 export default function Navbar() {
   const location = useLocation();
@@ -14,20 +14,29 @@ export default function Navbar() {
     { name: "Contact", path: "/contact" },
   ];
 
+  // Update activeIndex on route change
   useEffect(() => {
     const currentIndex = links.findIndex(link => link.path === location.pathname);
     setActiveIndex(currentIndex);
   }, [location.pathname]);
 
+  // Handle window resize
   useEffect(() => {
     const handleResize = () => {
       setDisableTransition(true);
-      // Re-enable transition after a tiny delay
       setTimeout(() => setDisableTransition(false), 50);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  // Ensure refs are set before rendering the oval
+  const [refsReady, setRefsReady] = useState(false);
+  useLayoutEffect(() => {
+    if (linkRefs.current.every(ref => ref)) {
+      setRefsReady(true);
+    }
+  }, [linkRefs.current]);
 
   return (
     <nav style={{
@@ -57,7 +66,7 @@ export default function Navbar() {
       ))}
 
       {/* Moving oval */}
-      {linkRefs.current[activeIndex] && (
+      {refsReady && linkRefs.current[activeIndex] && (
         <div
           style={{
             position: "absolute",
