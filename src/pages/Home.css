@@ -1,8 +1,16 @@
 @font-face {
   font-family: 'Bastliga One';
-  src: url('../fonts/Bastliga One.otf') format('opentype');
+  src: url('../fonts/Bastliga_One.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+}
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .home-title {
