@@ -1,3 +1,5 @@
+import './Home.css'
+
 export default function Home() {
   return (
     <div
@@ -11,7 +13,7 @@ export default function Home() {
         padding: 0,
       }}
     >
-      <h1>Welcome to my portfolio</h1>
+      <h1 className="home-title">Nicholas</h1>
     </div>
   );
 }
