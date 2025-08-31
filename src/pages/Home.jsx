@@ -16,15 +16,20 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="hero-section">
-      {images.map((img, index) => (
-        <div
-          key={index}
-          className="hero-bg"
-          style={{ backgroundImage: `url(${img})`, opacity: index === current ? 1 : 0 }}
-        />
-      ))}
-      <h1 className="hero-title">Nicholas</h1>
-    </div>
+    <>
+      <div className="hero-section">
+        {images.map((img, index) => (
+          <div
+            key={index}
+            className="hero-bg"
+            style={{ backgroundImage: `url(${img})`, opacity: index === current ? 1 : 0 }}
+          />
+        ))}
+        <h1 className="hero-title">Nicholas</h1>
+      </div>
+      <div className="full-page-section">
+        <h1 style={{ textAlign: "center" }}>This is the about section of my portfolio</h1>
+      </div>
+    </>
   );
 }
